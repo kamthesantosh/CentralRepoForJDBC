@@ -1,0 +1,22 @@
+package com.cybage;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class InsertDataIntoTables {
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		System.out.println("sttep01");
+		Class.forName("com.mysql.jdbc.Driver");
+		System.out.println("sttep02");
+		String url = "jdbc:mysql://localhost:3306/Ecommercedb?characterEncoding=utf8";
+		Connection connection = DriverManager.getConnection(url, "root", "root");
+		System.out.println("sttep03");
+		Statement smt = connection.createStatement();
+		String sql = "insert into student(name,contactNo) values('santosh kamthe','9552999921')";
+		Boolean isInserted = smt.execute(sql);
+		System.out.println("record insertd succesfullly if it retuns:" + isInserted);
+	}
+}

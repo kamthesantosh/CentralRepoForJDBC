@@ -1,0 +1,25 @@
+package com.velocity.StandardProcedure;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class StdProcedureForInsert {
+public static void main(String[] args) throws ClassNotFoundException, SQLException {
+	
+	 Class.forName("com.mysql.jdbc.Driver");
+	 
+	 String url="jdbc:mysql://localhost:3306/companydb?characterEncoding=utf8";
+	 Connection con=DriverManager.getConnection(url, "root", "root");
+	 
+	CallableStatement col= con.prepareCall("call insert_emp(?,?,?)");
+	col.setInt(1, 10);
+	col.setString(2, "Ram");
+    col.setInt(3, 26000);
+    
+    col.executeUpdate();
+    
+    System.out.println("record inserted successfully");
+}
+}
